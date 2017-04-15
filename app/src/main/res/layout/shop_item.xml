@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/cardview_light_background"
+                android:background="@color/cardViewBlue"
                 android:orientation="horizontal">
 
                 <TextView
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:background="@color/cardview_light_background"
+            android:background="@color/cardViewBlue"
             android:text="TextView"
             android:textAlignment="center"
             android:textSize="18sp" />
