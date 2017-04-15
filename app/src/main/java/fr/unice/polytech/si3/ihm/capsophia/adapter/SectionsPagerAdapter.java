@@ -28,11 +28,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Magasins";
                 case 1:
-                    return "SECTION 2";
+                    return "Événements";
                 case 2:
-                    return "SECTION 3";
+                    return "Trafic";
             }
             return null;
         }
