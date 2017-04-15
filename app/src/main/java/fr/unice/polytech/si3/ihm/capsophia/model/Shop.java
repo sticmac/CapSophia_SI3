@@ -7,9 +7,11 @@ public class Shop {
     private String shortDescription;
     private String longDescription;
     private Media media;
+    private Category category;
 
-    public Shop(String name, String shortDescription, String longDescription, Media media) {
+    public Shop(String name, Category category, String shortDescription, String longDescription, Media media) {
         this.name = name;
+        this.category = category;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.media = media;
@@ -30,4 +32,6 @@ public class Shop {
     public Media getMedia() {
         return media;
     }
+
+    public Category getCategory() { return category; }
 }

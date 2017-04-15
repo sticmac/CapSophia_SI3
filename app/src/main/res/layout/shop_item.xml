@@ -25,21 +25,15 @@
             android:layout_gravity="bottom"
             android:orientation="vertical">
 
-            <LinearLayout
+
+            <TextView
+                android:id="@+id/shopShortDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.33"
                 android:background="@color/cardViewBlue"
-                android:orientation="horizontal">
+                android:text="TextView" />
 
-                <TextView
-                    android:id="@+id/shopShortDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.33"
-                    android:text="TextView" />
-
-            </LinearLayout>
 
         </LinearLayout>
 

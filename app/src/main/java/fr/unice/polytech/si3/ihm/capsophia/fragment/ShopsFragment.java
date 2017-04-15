@@ -16,6 +16,7 @@ import java.util.List;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
 import fr.unice.polytech.si3.ihm.capsophia.adapter.ShopsAdapter;
+import fr.unice.polytech.si3.ihm.capsophia.model.Category;
 import fr.unice.polytech.si3.ihm.capsophia.model.Shop;
 import fr.unice.polytech.si3.ihm.capsophia.model.media.Image;
 import fr.unice.polytech.si3.ihm.capsophia.model.media.Video;
@@ -35,14 +36,7 @@ public class ShopsFragment extends Fragment {
         super.onActivityCreated(onSavedInstance);
 
         List<Shop> shopList = new ArrayList<>();
-        shopList.add(new Shop("To Be or to Have", "MMiaouMiaouMiaouMiaouMiaouMiaouiaou", "Nyan", new Image("https://pbs.twimg.com/profile_images/792875481662128128/KJjZCj0Q_400x400.jpg")));
-        shopList.add(new Shop("To Be or to Have", "Miaou", "Nyan", new Image("https://pbs.twimg.com/profile_images/792875481662128128/KJjZCj0Q_400x400.jpg")));
-        shopList.add(new Shop("To Be or to Have", "Miaou", "Nyan", new Image("https://pbs.twimg.com/profile_images/792875481662128128/KJjZCj0Q_400x400.jpg")));
-        shopList.add(new Shop("To Be or to Have", "Miaou", "Nyan", new Image("https://pbs.twimg.com/profile_images/792875481662128128/KJjZCj0Q_400x400.jpg")));
-        shopList.add(new Shop("To Be or to Have", "Miaou", "Nyan", new Image("https://pbs.twimg.com/profile_images/792875481662128128/KJjZCj0Q_400x400.jpg")));
-        shopList.add(new Shop("To Be or to Have", "Miaou", "Nyan", new Image("https://pbs.twimg.com/profile_images/792875481662128128/KJjZCj0Q_400x400.jpg")));
-        shopList.add(new Shop("To Be or to Have", "Miaou", "Nyan", new Image("https://pbs.twimg.com/profile_images/792875481662128128/KJjZCj0Q_400x400.jpg")));
-        shopList.add(new Shop("To Be or to Have", "Miaou", "Nyan", new Image("https://pbs.twimg.com/profile_images/792875481662128128/KJjZCj0Q_400x400.jpg")));
+        shopList.add(new Shop("To Be or to Have", Category.WELFARE, "Miaou", "Nyan", new Image("https://pbs.twimg.com/profile_images/792875481662128128/KJjZCj0Q_400x400.jpg")));
 
         FloatingActionButton fab = (FloatingActionButton) this.getView().findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
