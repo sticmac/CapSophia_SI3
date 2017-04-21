@@ -6,20 +6,19 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
 import fr.unice.polytech.si3.ihm.capsophia.adapter.ShopsAdapter;
-import fr.unice.polytech.si3.ihm.capsophia.model.Category;
+import fr.unice.polytech.si3.ihm.capsophia.database.ShopsDBHelper;
 import fr.unice.polytech.si3.ihm.capsophia.model.Shop;
-import fr.unice.polytech.si3.ihm.capsophia.model.media.Image;
-import fr.unice.polytech.si3.ihm.capsophia.model.media.Video;
 
 public class ShopsFragment extends Fragment {
     public ShopsFragment(){}
@@ -36,7 +35,18 @@ public class ShopsFragment extends Fragment {
         super.onActivityCreated(onSavedInstance);
 
         List<Shop> shopList = new ArrayList<>();
-        shopList.add(new Shop("To Be or to Have", Category.WELFARE, "Miaou", "Nyan", new Image("https://pbs.twimg.com/profile_images/792875481662128128/KJjZCj0Q_400x400.jpg")));
+
+        try {
+            ShopsDBHelper shopsDBHelper = new ShopsDBHelper(getContext());
+            shopsDBHelper.createDataBase();
+            shopsDBHelper.openDataBase();
+            shopList = shopsDBHelper.getAllShops();
+            shopsDBHelper.close();
+        } catch (IOException | SQLException e) {
+            System.err.println(e);
+            e.printStackTrace();
+            System.exit(1);
+        }
 
         FloatingActionButton fab = (FloatingActionButton) this.getView().findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
