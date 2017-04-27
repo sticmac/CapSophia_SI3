@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.ihm.capsophia.model;
+package fr.unice.polytech.si3.ihm.capsophia.model.shop;
 
 import fr.unice.polytech.si3.ihm.capsophia.model.media.Media;
 
@@ -7,11 +7,11 @@ public class Shop {
     private String shortDescription;
     private String longDescription;
     private Media media;
-    private Category category;
+    private ShopCategory shopCategory;
 
-    public Shop(String name, Category category, String shortDescription, String longDescription, Media media) {
+    public Shop(String name, ShopCategory shopCategory, String shortDescription, String longDescription, Media media) {
         this.name = name;
-        this.category = category;
+        this.shopCategory = shopCategory;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.media = media;
@@ -33,5 +33,5 @@ public class Shop {
         return media;
     }
 
-    public Category getCategory() { return category; }
+    public ShopCategory getShopCategory() { return shopCategory; }
 }

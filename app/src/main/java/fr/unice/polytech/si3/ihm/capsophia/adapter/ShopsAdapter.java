@@ -9,7 +9,7 @@ import java.util.List;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
 import fr.unice.polytech.si3.ihm.capsophia.holder.ShopsViewHolder;
-import fr.unice.polytech.si3.ihm.capsophia.model.Shop;
+import fr.unice.polytech.si3.ihm.capsophia.model.shop.Shop;
 
 public class ShopsAdapter extends RecyclerView.Adapter<ShopsViewHolder> {
     private List<Shop> shops;
@@ -29,9 +29,9 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsViewHolder> {
         Shop shop = shops.get(position);
 
         holder.getName().setText(shop.getName());
-        holder.getName().setBackgroundColor(shop.getCategory().getColor());
+        holder.getName().setBackgroundColor(shop.getShopCategory().getColor());
         holder.getShortDescription().setText(shop.getShortDescription());
-        holder.getShortDescription().setBackgroundColor(shop.getCategory().getColor());
+        holder.getShortDescription().setBackgroundColor(shop.getShopCategory().getColor());
 
         shop.getMedia().downloadThumbnailIn(holder.getThumbnail());
     }

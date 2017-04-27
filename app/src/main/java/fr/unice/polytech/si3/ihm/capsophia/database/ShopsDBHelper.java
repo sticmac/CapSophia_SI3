@@ -14,8 +14,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import fr.unice.polytech.si3.ihm.capsophia.model.Category;
-import fr.unice.polytech.si3.ihm.capsophia.model.Shop;
+import fr.unice.polytech.si3.ihm.capsophia.model.shop.ShopCategory;
+import fr.unice.polytech.si3.ihm.capsophia.model.shop.Shop;
 import fr.unice.polytech.si3.ihm.capsophia.model.media.Image;
 import fr.unice.polytech.si3.ihm.capsophia.model.media.Video;
 
@@ -114,7 +114,7 @@ public class ShopsDBHelper extends SQLiteOpenHelper {
     public static Shop getArticleFromCursor(Cursor cursor) {
         return new Shop(
             cursor.getString(0),
-            Category.valueOf(cursor.getString(1)),
+            ShopCategory.valueOf(cursor.getString(1)),
                 cursor.getString(2),
                 cursor.getString(3),
                 cursor.getInt(4) == 0 ?

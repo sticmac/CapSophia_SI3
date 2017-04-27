@@ -1,11 +1,11 @@
-package fr.unice.polytech.si3.ihm.capsophia.model;
+package fr.unice.polytech.si3.ihm.capsophia.model.shop;
 
-public enum Category {
+public enum ShopCategory {
     WELFARE(0xCC96FF4C);
 
     private int color;
 
-    Category(int color) {
+    ShopCategory(int color) {
         this.color = color;
     }
 
