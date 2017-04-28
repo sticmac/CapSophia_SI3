@@ -7,16 +7,16 @@ import android.widget.TextView;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
 
-public class ShopsViewHolder extends RecyclerView.ViewHolder {
+public class ThumbnailViewHolder extends RecyclerView.ViewHolder {
     private TextView name;
     private TextView shortDescription;
     private ImageView thumbnail;
 
-    public ShopsViewHolder(View itemView) {
+    public ThumbnailViewHolder(View itemView) {
         super(itemView);
-        this.name = (TextView)itemView.findViewById(R.id.shopName);
-        this.shortDescription = (TextView)itemView.findViewById(R.id.shopShortDescription);
-        this.thumbnail = (ImageView)itemView.findViewById(R.id.shopThumbnail);
+        this.name = (TextView)itemView.findViewById(R.id.name);
+        this.shortDescription = (TextView)itemView.findViewById(R.id.shortDescription);
+        this.thumbnail = (ImageView)itemView.findViewById(R.id.thumbnailImage);
     }
 
     public TextView getName() {

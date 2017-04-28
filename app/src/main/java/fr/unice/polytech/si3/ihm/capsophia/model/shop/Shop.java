@@ -8,7 +8,7 @@ public class Shop extends LogicalElement {
 
     public Shop(String name, String shortDescription, String longDescription, Media media, ShopCategory shopCategory) {
         super(name, shortDescription, longDescription, media);
-        this.media = media;
+        this.shopCategory = shopCategory;
     }
 
     public ShopCategory getShopCategory() { return shopCategory; }

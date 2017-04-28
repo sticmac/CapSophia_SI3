@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/shopThumbnail"
+            android:id="@+id/thumbnailImage"
             android:layout_width="match_parent"
             android:layout_height="@dimen/shop_element_height"
             app:srcCompat="@mipmap/ic_launcher" />
@@ -27,7 +27,7 @@
 
 
             <TextView
-                android:id="@+id/shopShortDescription"
+                android:id="@+id/shortDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
@@ -38,7 +38,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/shopName"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"

@@ -100,7 +100,7 @@ public class ShopsDBHelper extends SQLiteOpenHelper {
         List<Shop> shops = new LinkedList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            shops.add(getArticleFromCursor(cursor));
+            shops.add(getShopFromCursor(cursor));
             cursor.moveToNext();
         }
         cursor.close();
@@ -111,15 +111,17 @@ public class ShopsDBHelper extends SQLiteOpenHelper {
         return myDataBase.rawQuery(query, null);
     }
 
-    public static Shop getArticleFromCursor(Cursor cursor) {
-        return new Shop(
-            cursor.getString(0),
-            ShopCategory.valueOf(cursor.getString(1)),
+    public static Shop getShopFromCursor(Cursor cursor) {
+        String string = cursor.getString(1);
+        Shop shop = new Shop(
+                cursor.getString(0),
                 cursor.getString(2),
                 cursor.getString(3),
                 cursor.getInt(4) == 0 ?
                         new Image(cursor.getString(5)) :
-                        new Video(cursor.getString(5))
-        );
+                        new Video(cursor.getString(5)),
+                ShopCategory.valueOf(cursor.getString(1))
+            );
+        return shop;
     }
 }

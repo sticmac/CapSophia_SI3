@@ -18,6 +18,7 @@ import java.util.List;
 import fr.unice.polytech.si3.ihm.capsophia.R;
 import fr.unice.polytech.si3.ihm.capsophia.adapter.ShopsAdapter;
 import fr.unice.polytech.si3.ihm.capsophia.database.ShopsDBHelper;
+import fr.unice.polytech.si3.ihm.capsophia.model.LogicalElement;
 import fr.unice.polytech.si3.ihm.capsophia.model.shop.Shop;
 
 public class ShopsFragment extends Fragment {
@@ -34,13 +35,13 @@ public class ShopsFragment extends Fragment {
     public void onActivityCreated(Bundle onSavedInstance) {
         super.onActivityCreated(onSavedInstance);
 
-        List<Shop> shopList = new ArrayList<>();
+        List<LogicalElement> shopList = new ArrayList<>();
 
         try {
             ShopsDBHelper shopsDBHelper = new ShopsDBHelper(getContext());
             shopsDBHelper.createDataBase();
             shopsDBHelper.openDataBase();
-            shopList = shopsDBHelper.getAllShops();
+            shopList.addAll(shopsDBHelper.getAllShops());
             shopsDBHelper.close();
         } catch (IOException | SQLException e) {
             System.err.println(e);
