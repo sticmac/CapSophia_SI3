@@ -6,40 +6,40 @@ import android.database.Cursor;
 import java.util.LinkedList;
 import java.util.List;
 
-import fr.unice.polytech.si3.ihm.capsophia.model.shop.ShopCategory;
-import fr.unice.polytech.si3.ihm.capsophia.model.shop.Shop;
+import fr.unice.polytech.si3.ihm.capsophia.model.event.Event;
+import fr.unice.polytech.si3.ihm.capsophia.model.event.EventCategory;
 import fr.unice.polytech.si3.ihm.capsophia.model.media.Image;
 import fr.unice.polytech.si3.ihm.capsophia.model.media.Video;
 
-public class ShopsDBHelper extends DBHelper {
+public class EventsDBHelper extends DBHelper {
 
-    public ShopsDBHelper(Context context) {
+    public EventsDBHelper(Context context) {
         super(context);
     }
 
-    public List<Shop> getAllShops() {
-        Cursor cursor = myDataBase.rawQuery("SELECT * FROM shops ORDER BY name", null);
-        List<Shop> shops = new LinkedList<>();
+    public List<Event> getAllEvents() {
+        Cursor cursor = myDataBase.rawQuery("SELECT * FROM events ORDER BY name", null);
+        List<Event> events = new LinkedList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            shops.add(getShopFromCursor(cursor));
+            events.add(getEventFromCursor(cursor));
             cursor.moveToNext();
         }
         cursor.close();
-        return shops;
+        return events;
     }
 
-    public static Shop getShopFromCursor(Cursor cursor) {
+    public static Event getEventFromCursor(Cursor cursor) {
         String string = cursor.getString(1);
-        Shop shop = new Shop(
+        Event event = new Event(
                 cursor.getString(0),
                 cursor.getString(2),
                 cursor.getString(3),
                 cursor.getInt(4) == 0 ?
                         new Image(cursor.getString(5)) :
                         new Video(cursor.getString(5)),
-                ShopCategory.valueOf(cursor.getString(1))
+                EventCategory.valueOf(cursor.getString(1))
             );
-        return shop;
+        return event;
     }
 }

@@ -1,9 +1,9 @@
 package fr.unice.polytech.si3.ihm.capsophia.model.event;
 
 public enum EventCategory {
-    INTERNSHIP(0x62C9EA),
-    GAME(0xEA8262),
-    CONTEST(0xB64CFF);
+    INTERNSHIP(0xCC62C9EA),
+    GAME(0xCCEA8262),
+    CONTEST(0xCCB64CFF);
 
     private int color;
 

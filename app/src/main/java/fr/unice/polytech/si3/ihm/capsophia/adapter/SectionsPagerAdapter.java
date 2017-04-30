@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import fr.unice.polytech.si3.ihm.capsophia.fragment.EventsFragment;
 import fr.unice.polytech.si3.ihm.capsophia.fragment.PlaceholderFragment;
 import fr.unice.polytech.si3.ihm.capsophia.fragment.ShopsFragment;
 
@@ -19,6 +20,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return new ShopsFragment();
+            case 1:
+                return new EventsFragment();
             default:
                 return PlaceholderFragment.newInstance(position+1);
         }
