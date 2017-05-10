@@ -2,8 +2,12 @@ package fr.unice.polytech.si3.ihm.capsophia;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +18,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import fr.unice.polytech.si3.ihm.capsophia.adapter.SectionsPagerAdapter;
+import java.util.HashMap;
+import java.util.Map;
+
+import fr.unice.polytech.si3.ihm.capsophia.fragment.EventsFragment;
+import fr.unice.polytech.si3.ihm.capsophia.fragment.MapFragment;
+import fr.unice.polytech.si3.ihm.capsophia.fragment.ShopsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,12 +36,21 @@ public class MainActivity extends AppCompatActivity
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    private SectionsPagerAdapter sectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager viewPager;
+
+    private Map<Integer, Class<? extends Fragment>> fragments;
+
+    public MainActivity() {
+        super();
+        fragments = new HashMap<>();
+        fragments.put(R.id.nav_traffic, MapFragment.class);
+        fragments.put(R.id.nav_shops, ShopsFragment.class);
+        fragments.put(R.id.nav_events, EventsFragment.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +59,11 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setAdapter(sectionsPagerAdapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        try {
+            changeFragment(R.id.nav_shops);
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -96,17 +109,24 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_traffic) {
-            Intent intent = new Intent(this, MapsActivity.class);
-            startActivity(intent);
+        try {
+            changeFragment(item.getItemId());
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void changeFragment(int i) throws InstantiationException, IllegalAccessException {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = fragments.get(i).newInstance();
+        fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.commit();
     }
 }
