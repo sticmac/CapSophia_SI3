@@ -39,9 +39,15 @@ public class MapFragment extends Fragment {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 // Add a marker in Sydney and move the camera
-                LatLng sydney = new LatLng(-34, 151);
-                googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                try {
+                    googleMap.setTrafficEnabled(true);
+                } catch (SecurityException e) {
+                    System.err.println(e);
+                    e.printStackTrace();
+                }
+                LatLng capSophia = new LatLng(43.616713, 7.063742);
+                googleMap.addMarker(new MarkerOptions().position(capSophia).title("Marker in Sydney"));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(capSophia, 15));
             }
         });
 
