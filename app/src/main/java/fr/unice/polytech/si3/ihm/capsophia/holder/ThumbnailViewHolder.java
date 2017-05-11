@@ -9,13 +9,13 @@ import fr.unice.polytech.si3.ihm.capsophia.R;
 
 public class ThumbnailViewHolder extends RecyclerView.ViewHolder {
     private TextView name;
-    private TextView shortDescription;
+    private TextView category;
     private ImageView thumbnail;
 
     public ThumbnailViewHolder(View itemView) {
         super(itemView);
         this.name = (TextView)itemView.findViewById(R.id.name);
-        this.shortDescription = (TextView)itemView.findViewById(R.id.shortDescription);
+        this.category = (TextView)itemView.findViewById(R.id.shortDescription);
         this.thumbnail = (ImageView)itemView.findViewById(R.id.thumbnailImage);
     }
 
@@ -23,8 +23,8 @@ public class ThumbnailViewHolder extends RecyclerView.ViewHolder {
         return name;
     }
 
-    public TextView getShortDescription() {
-        return shortDescription;
+    public TextView getCategory() {
+        return category;
     }
 
     public ImageView getThumbnail() {

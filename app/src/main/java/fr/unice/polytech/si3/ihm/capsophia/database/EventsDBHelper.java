@@ -30,14 +30,12 @@ public class EventsDBHelper extends DBHelper {
     }
 
     public static Event getEventFromCursor(Cursor cursor) {
-        String string = cursor.getString(1);
         Event event = new Event(
                 cursor.getString(0),
                 cursor.getString(2),
-                cursor.getString(3),
-                cursor.getInt(4) == 0 ?
-                        new Image(cursor.getString(5)) :
-                        new Video(cursor.getString(5)),
+                cursor.getInt(3) == 0 ?
+                        new Image(cursor.getString(4)) :
+                        new Video(cursor.getString(4)),
                 EventCategory.valueOf(cursor.getString(1))
             );
         return event;

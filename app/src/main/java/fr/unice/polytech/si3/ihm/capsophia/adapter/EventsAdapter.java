@@ -16,6 +16,6 @@ public class EventsAdapter extends ThumbnailsAdapter {
     public void onBindViewHolder(ThumbnailViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         Event logicalElement = (Event)logicalElements.get(position);
-        holder.getName().setBackgroundColor(logicalElement.getEventCategory().getColor());
+        holder.getCategory().setBackgroundColor(logicalElement.getCategory().getColor());
     }
 }

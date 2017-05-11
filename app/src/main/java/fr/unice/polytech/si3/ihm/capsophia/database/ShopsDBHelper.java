@@ -34,10 +34,9 @@ public class ShopsDBHelper extends DBHelper {
         Shop shop = new Shop(
                 cursor.getString(0),
                 cursor.getString(2),
-                cursor.getString(3),
-                cursor.getInt(4) == 0 ?
-                        new Image(cursor.getString(5)) :
-                        new Video(cursor.getString(5)),
+                cursor.getInt(3) == 0 ?
+                        new Image(cursor.getString(4)) :
+                        new Video(cursor.getString(4)),
                 ShopCategory.valueOf(cursor.getString(1))
             );
         return shop;

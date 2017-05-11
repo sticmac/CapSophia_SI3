@@ -19,7 +19,6 @@ import fr.unice.polytech.si3.ihm.capsophia.R;
 import fr.unice.polytech.si3.ihm.capsophia.adapter.ShopsAdapter;
 import fr.unice.polytech.si3.ihm.capsophia.database.ShopsDBHelper;
 import fr.unice.polytech.si3.ihm.capsophia.model.LogicalElement;
-import fr.unice.polytech.si3.ihm.capsophia.model.shop.Shop;
 
 public class ShopsFragment extends Fragment {
     public ShopsFragment(){}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="WELFARE">Bien-Être</string>
+
+    <string name="INTERNSHIP">Stage</string>
+    <string name="GAME">Jeu</string>
+    <string name="CONTEST">Concours</string>
+</resources>

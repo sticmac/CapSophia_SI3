@@ -3,28 +3,28 @@ package fr.unice.polytech.si3.ihm.capsophia.model;
 import fr.unice.polytech.si3.ihm.capsophia.model.media.Media;
 
 public abstract class LogicalElement {
-    protected String name;
-    protected String shortDescription;
-    protected String longDescription;
-    protected Media media;
+    private String name;
+    private String description;
+    private Media media;
+    private Category category;
 
-    public LogicalElement(String name, String shortDescription, String longDescription, Media media) {
+    public LogicalElement(String name, String description, Media media, Category category) {
         this.name = name;
-        this.shortDescription = shortDescription;
-        this.longDescription = longDescription;
+        this.description = description;
         this.media = media;
+        this.category = category;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getShortDescription() {
-        return shortDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public String getLongDescription() {
-        return longDescription;
+    public Category getCategory() {
+        return category;
     }
 
     public Media getMedia() {

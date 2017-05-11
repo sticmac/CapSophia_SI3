@@ -29,7 +29,7 @@ public abstract class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailVi
         LogicalElement logicalElement = logicalElements.get(position);
 
         holder.getName().setText(logicalElement.getName());
-        holder.getShortDescription().setText(logicalElement.getShortDescription());
+        holder.getCategory().setText(logicalElement.getCategory().getNameId());
 
         logicalElement.getMedia().downloadThumbnailIn(holder.getThumbnail());
     }
