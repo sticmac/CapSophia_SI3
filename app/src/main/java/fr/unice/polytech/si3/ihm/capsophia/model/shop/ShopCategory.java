@@ -4,7 +4,7 @@ import fr.unice.polytech.si3.ihm.capsophia.R;
 import fr.unice.polytech.si3.ihm.capsophia.model.Category;
 
 public enum ShopCategory implements Category {
-    WELFARE(R.string.WELFARE, 0xCC96FF4C);
+    WELFARE(R.string.WELFARE, 0xEE96FF4C);
 
     private int color;
     private int nameId;

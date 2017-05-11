@@ -4,9 +4,9 @@ import fr.unice.polytech.si3.ihm.capsophia.R;
 import fr.unice.polytech.si3.ihm.capsophia.model.Category;
 
 public enum EventCategory implements Category {
-    INTERNSHIP(R.string.INTERNSHIP, 0xCC62C9EA),
-    GAME(R.string.GAME, 0xCCEA8262),
-    CONTEST(R.string.CONTEST, 0xCCB64CFF);
+    INTERNSHIP(R.string.INTERNSHIP, 0xEE62C9EA),
+    GAME(R.string.GAME, 0xEEEA8262),
+    CONTEST(R.string.CONTEST, 0xEEB64CFF);
 
     private int color;
     private int nameId;
