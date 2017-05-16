@@ -23,6 +23,8 @@ import fr.unice.polytech.si3.ihm.capsophia.database.ShopsDBHelper;
 import fr.unice.polytech.si3.ihm.capsophia.model.LogicalElement;
 
 public class ShopsFragment extends Fragment {
+    private ShopsAdapter adapter;
+
     public ShopsFragment(){}
 
     @Override
@@ -50,6 +52,8 @@ public class ShopsFragment extends Fragment {
             System.exit(1);
         }
 
+        adapter = new ShopsAdapter(shopList);
+
         FloatingActionButton fab = (FloatingActionButton) this.getView().findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +63,27 @@ public class ShopsFragment extends Fragment {
             }
         });
 
-        ShopsAdapter adapter = new ShopsAdapter(shopList);
-
         RecyclerView recyclerView = (RecyclerView) this.getView().findViewById(R.id.shops);
         recyclerView.setAdapter(adapter);
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Bundle bundle = getActivity().getIntent().getExtras();
+
+        if (bundle != null) {
+            ArrayList<String> categories = bundle.getStringArrayList("selected_categories");
+            if (categories != null) {
+                adapter.setSelectedCategories(categories);
+                adapter.getFilter().filter("miaou");
+            }
+        }
+    }
+
 }

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="WELFARE">Bien-Être</string>
-
     <string name="INTERNSHIP">Stage</string>
     <string name="GAME">Jeu</string>
     <string name="CONTEST">Concours</string>
+    <string name="FASHION_M">Mode Hommes</string>
+    <string name="FASHION_F">Mode Femmes</string>
+    <string name="FASHION_C">Mode Enfants</string>
+    <string name="LEATHER">Maroquinerie</string>
+    <string name="DECORATION">Décoration</string>
+
 </resources>

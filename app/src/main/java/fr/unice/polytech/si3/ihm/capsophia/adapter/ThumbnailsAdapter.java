@@ -4,7 +4,9 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Filterable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
@@ -12,10 +14,14 @@ import fr.unice.polytech.si3.ihm.capsophia.holder.ThumbnailViewHolder;
 import fr.unice.polytech.si3.ihm.capsophia.model.LogicalElement;
 
 public abstract class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailViewHolder> {
-    List<LogicalElement> logicalElements;
+    List<LogicalElement> originalData;
+    List<LogicalElement> filteredData;
+    ArrayList<String> selectedCategories;
 
     public ThumbnailsAdapter(List<LogicalElement> list) {
-        this.logicalElements = list;
+        this.originalData = list;
+        this.filteredData = this.originalData;
+        this.selectedCategories = new ArrayList<>();
     }
 
     @Override
@@ -26,7 +32,7 @@ public abstract class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailVi
 
     @Override
     public void onBindViewHolder(ThumbnailViewHolder holder, int position) {
-        LogicalElement logicalElement = logicalElements.get(position);
+        LogicalElement logicalElement = filteredData.get(position);
 
         holder.getName().setText(logicalElement.getName());
         holder.getCategory().setText(logicalElement.getCategory().getNameId());
@@ -36,6 +42,14 @@ public abstract class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailVi
 
     @Override
     public int getItemCount() {
-        return logicalElements.size();
+        return filteredData.size();
+    }
+
+    public void setSelectedCategories(ArrayList<String> selectedCategories) {
+        this.selectedCategories = selectedCategories;
+    }
+
+    public ArrayList<String> getSelectedCategories() {
+        return this.selectedCategories;
     }
 }
