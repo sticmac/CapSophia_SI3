@@ -9,6 +9,7 @@ import android.widget.Filterable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
 import fr.unice.polytech.si3.ihm.capsophia.holder.ThumbnailViewHolder;
@@ -54,23 +55,31 @@ public class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailViewHolder>
            protected FilterResults performFiltering(CharSequence constraint) {
                FilterResults results = new FilterResults();
 
-               if (constraint == null || constraint.length() == 0 || selectedCategories == null || selectedCategories.isEmpty()) { //nothing to filter on
+               if ((constraint == null || constraint.length() == 0 ) && (selectedCategories == null || selectedCategories.isEmpty())) { //nothing to filter on
                     results.values = originalData;
                     results.count = originalData.size();
                } else {
-                    ArrayList<LogicalElement> filterResultsData = new ArrayList<>();
+                   ArrayList<LogicalElement> filterResultsData = new ArrayList<>();
 
-                    for(LogicalElement data : originalData) {
-                        //In this loop, you'll filter through originalData and compare each item to charSequence.
-                        //If you find a match, add it to your new ArrayList
-                        //I'm not sure how you're going to do comparison, so you'll need to fill out this conditional
-                        if (selectedCategories.contains(data.getCategory().name())) {
-                            filterResultsData.add(data);
-                        }
-                    }
+                   Predicate<LogicalElement> predicate = null;
 
-                    results.values = filterResultsData;
-                    results.count = filterResultsData.size();
+                   if (constraint == null || constraint.length() == 0) {
+                       predicate = logicalElement -> selectedCategories.contains(logicalElement.getCategory().name());
+                   } else if (selectedCategories == null || selectedCategories.isEmpty()) {
+                       predicate = logicalElement -> logicalElement.getName().toLowerCase().contains(constraint.toString().toLowerCase());
+                   } else {
+                       predicate = logicalElement -> selectedCategories.contains(logicalElement.getCategory().name())
+                               && logicalElement.getName().toLowerCase().contains(constraint.toString().toLowerCase());
+                   }
+
+                   for (LogicalElement data : originalData) {
+                       if (predicate.test(data)) {
+                           filterResultsData.add(data);
+                       }
+                   }
+
+                   results.values = filterResultsData;
+                   results.count = filterResultsData.size();
                }
 
                return results;

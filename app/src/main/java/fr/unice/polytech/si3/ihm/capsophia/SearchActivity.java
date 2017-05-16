@@ -40,6 +40,7 @@ public class SearchActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putStringArrayListExtra("selected_categories", selected);
+        intent.putExtra("search_name", ((SearchView)findViewById(R.id.search)).getQuery());
         startActivity(intent);
     }
 }

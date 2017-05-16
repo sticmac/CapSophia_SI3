@@ -78,9 +78,10 @@ public class ShopsFragment extends Fragment {
 
         if (bundle != null) {
             ArrayList<String> categories = bundle.getStringArrayList("selected_categories");
+            CharSequence query = bundle.getCharSequence("search_name");
             if (categories != null) {
                 adapter.setSelectedCategories(categories);
-                adapter.getFilter().filter("miaou");
+                adapter.getFilter().filter(query);
             }
         }
     }
