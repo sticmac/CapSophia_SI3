@@ -3,7 +3,6 @@ package fr.unice.polytech.si3.ihm.capsophia.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,12 +17,12 @@ import java.util.List;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
 import fr.unice.polytech.si3.ihm.capsophia.SearchActivity;
-import fr.unice.polytech.si3.ihm.capsophia.adapter.ShopsAdapter;
+import fr.unice.polytech.si3.ihm.capsophia.adapter.ThumbnailsAdapter;
 import fr.unice.polytech.si3.ihm.capsophia.database.ShopsDBHelper;
 import fr.unice.polytech.si3.ihm.capsophia.model.LogicalElement;
 
 public class ShopsFragment extends Fragment {
-    private ShopsAdapter adapter;
+    private ThumbnailsAdapter adapter;
 
     public ShopsFragment(){}
 
@@ -52,7 +51,7 @@ public class ShopsFragment extends Fragment {
             System.exit(1);
         }
 
-        adapter = new ShopsAdapter(shopList);
+        adapter = new ThumbnailsAdapter(shopList);
 
         FloatingActionButton fab = (FloatingActionButton) this.getView().findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

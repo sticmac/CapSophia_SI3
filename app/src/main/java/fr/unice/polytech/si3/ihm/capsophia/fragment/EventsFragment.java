@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
-import fr.unice.polytech.si3.ihm.capsophia.adapter.EventsAdapter;
+import fr.unice.polytech.si3.ihm.capsophia.adapter.ThumbnailsAdapter;
 import fr.unice.polytech.si3.ihm.capsophia.database.EventsDBHelper;
 import fr.unice.polytech.si3.ihm.capsophia.model.LogicalElement;
 
@@ -57,7 +57,7 @@ public class EventsFragment extends Fragment {
             }
         });
 
-        EventsAdapter adapter = new EventsAdapter(eventsList);
+        ThumbnailsAdapter adapter = new ThumbnailsAdapter(eventsList);
 
         RecyclerView recyclerView = (RecyclerView) this.getView().findViewById(R.id.events);
         recyclerView.setAdapter(adapter);

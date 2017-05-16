@@ -36,7 +36,7 @@ public class CategoriesAdapter extends ArrayAdapter<Category> {
         CheckBox checkBox = (CheckBox)convertView.findViewById(R.id.box);
         checkBox.setText(getContext().getString(category.getNameId()));
         checkBox.setBackgroundColor(category.getColor());
-        checkBox.setTextColor(ColorStateList.valueOf(0));
+        checkBox.setTextColor(ColorStateList.valueOf(0xFF000000));
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

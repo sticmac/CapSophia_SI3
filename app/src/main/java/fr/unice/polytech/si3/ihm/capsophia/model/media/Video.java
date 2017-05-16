@@ -16,7 +16,7 @@ public class Video extends Media {
     public void downloadThumbnailIn(ImageView imageView) {
         DownloadImage downloadImage = new DownloadImage(imageView);
         try {
-            downloadImage.execute(new URL("http://img.youtube.com/vi/"+url.getPath().split("=")[1]+"/default.jpg"));
+            downloadImage.execute(new URL("http://img.youtube.com/vi/"+url.getQuery().split("=")[1]+"/default.jpg"));
         } catch (MalformedURLException e) {
             System.err.println(e);
             e.printStackTrace();
