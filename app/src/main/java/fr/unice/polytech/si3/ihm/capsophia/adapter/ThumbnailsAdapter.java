@@ -36,6 +36,7 @@ public class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailViewHolder>
     public void onBindViewHolder(ThumbnailViewHolder holder, int position) {
         LogicalElement logicalElement = filteredData.get(position);
 
+        holder.getThumbnail().setImageResource(R.mipmap.placeholder);
         holder.getName().setText(logicalElement.getName());
         holder.getCategory().setText(logicalElement.getCategory().getNameId());
         holder.getCategory().setBackgroundColor(logicalElement.getCategory().getColor());

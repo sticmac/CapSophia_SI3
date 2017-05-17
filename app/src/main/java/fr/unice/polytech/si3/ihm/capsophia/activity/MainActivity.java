@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.ihm.capsophia;
+package fr.unice.polytech.si3.ihm.capsophia.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import fr.unice.polytech.si3.ihm.capsophia.R;
 import fr.unice.polytech.si3.ihm.capsophia.fragment.EventsFragment;
 import fr.unice.polytech.si3.ihm.capsophia.fragment.MapFragment;
 import fr.unice.polytech.si3.ihm.capsophia.fragment.ShopsFragment;
@@ -44,7 +45,19 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         try {
-            changeFragment(R.id.nav_shops);
+            String fragment = getIntent().getStringExtra("categories");
+            if (fragment != null) {
+                switch (fragment) {
+                    case "events":
+                        changeFragment(R.id.nav_events);
+                        break;
+                    default:
+                        changeFragment(R.id.nav_shops);
+                        break;
+                }
+            } else {
+                changeFragment(R.id.nav_shops);
+            }
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }

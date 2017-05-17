@@ -35,7 +35,7 @@
             tools:replace="android:value"/>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -45,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SearchActivity"
+            android:name=".activity.SearchActivity"
             android:label="@string/research"
             android:theme="@style/AppTheme.PopupOverlay" />
     </application>

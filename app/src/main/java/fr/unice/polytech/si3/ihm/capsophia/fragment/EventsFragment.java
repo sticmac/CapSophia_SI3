@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.ihm.capsophia.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,11 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
+import fr.unice.polytech.si3.ihm.capsophia.activity.SearchActivity;
 import fr.unice.polytech.si3.ihm.capsophia.adapter.ThumbnailsAdapter;
 import fr.unice.polytech.si3.ihm.capsophia.database.EventsDBHelper;
 import fr.unice.polytech.si3.ihm.capsophia.model.LogicalElement;
 
 public class EventsFragment extends Fragment {
+    private ThumbnailsAdapter adapter;
+
     public EventsFragment() {
 
     }
@@ -52,17 +56,34 @@ public class EventsFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                intent.putExtra("categories", "events");
+                startActivity(intent);
             }
         });
 
-        ThumbnailsAdapter adapter = new ThumbnailsAdapter(eventsList);
+        adapter = new ThumbnailsAdapter(eventsList);
 
         RecyclerView recyclerView = (RecyclerView) this.getView().findViewById(R.id.events);
         recyclerView.setAdapter(adapter);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Bundle bundle = getActivity().getIntent().getExtras();
+
+        if (bundle != null) {
+            ArrayList<String> categories = bundle.getStringArrayList("selected_categories");
+            CharSequence query = bundle.getCharSequence("search_query");
+            if (categories != null) {
+                adapter.setSelectedCategories(categories);
+            }
+            adapter.getFilter().filter(query);
+        }
     }
 }

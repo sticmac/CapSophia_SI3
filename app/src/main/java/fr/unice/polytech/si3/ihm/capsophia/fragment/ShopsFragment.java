@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
-import fr.unice.polytech.si3.ihm.capsophia.SearchActivity;
+import fr.unice.polytech.si3.ihm.capsophia.activity.SearchActivity;
 import fr.unice.polytech.si3.ihm.capsophia.adapter.ThumbnailsAdapter;
 import fr.unice.polytech.si3.ihm.capsophia.database.ShopsDBHelper;
 import fr.unice.polytech.si3.ihm.capsophia.model.LogicalElement;
@@ -58,6 +58,7 @@ public class ShopsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
+                intent.putExtra("categories", "shop");
                 startActivity(intent);
             }
         });
@@ -78,11 +79,11 @@ public class ShopsFragment extends Fragment {
 
         if (bundle != null) {
             ArrayList<String> categories = bundle.getStringArrayList("selected_categories");
-            CharSequence query = bundle.getCharSequence("search_name");
+            CharSequence query = bundle.getCharSequence("search_query");
             if (categories != null) {
                 adapter.setSelectedCategories(categories);
-                adapter.getFilter().filter(query);
             }
+            adapter.getFilter().filter(query);
         }
     }
 
