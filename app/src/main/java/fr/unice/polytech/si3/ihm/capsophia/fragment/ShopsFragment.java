@@ -1,9 +1,12 @@
 package fr.unice.polytech.si3.ihm.capsophia.fragment;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,10 +16,11 @@ import android.view.ViewGroup;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
-import fr.unice.polytech.si3.ihm.capsophia.activity.SearchActivity;
 import fr.unice.polytech.si3.ihm.capsophia.adapter.ThumbnailsAdapter;
 import fr.unice.polytech.si3.ihm.capsophia.database.ShopsDBHelper;
 import fr.unice.polytech.si3.ihm.capsophia.model.LogicalElement;
@@ -56,10 +60,17 @@ public class ShopsFragment extends Fragment {
         FloatingActionButton fab = (FloatingActionButton) this.getView().findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SearchActivity.class);
-                intent.putExtra("categories", "shop");
-                startActivity(intent);
+            public void onClick(View view) { //open search fragment
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment prev = fragmentManager.findFragmentByTag("search");
+                if (prev != null) {
+                    fragmentTransaction.remove(prev);
+                }
+                fragmentTransaction.addToBackStack(null);
+
+                DialogFragment newFragment = SearchFragment.newInstance(SearchFragment.SHOPS);
+                newFragment.show(fragmentTransaction, "dialog");
             }
         });
 
@@ -70,21 +81,14 @@ public class ShopsFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
 
-        Bundle bundle = getActivity().getIntent().getExtras();
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("Categories", 0);
+        Set<String> selected = sharedPreferences.getStringSet("shop_categories", new HashSet<>());
 
-        if (bundle != null) {
-            ArrayList<String> categories = bundle.getStringArrayList("selected_categories");
-            CharSequence query = bundle.getCharSequence("search_query");
-            if (categories != null) {
-                adapter.setSelectedCategories(categories);
-            }
-            adapter.getFilter().filter(query);
-        }
+        adapter.setSelectedCategories(selected);
+        adapter.getFilter().filter(sharedPreferences.getString("shop_query", ""));
     }
-
 }

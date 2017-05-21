@@ -8,7 +8,9 @@ import android.widget.Filter;
 import android.widget.Filterable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
@@ -18,12 +20,12 @@ import fr.unice.polytech.si3.ihm.capsophia.model.LogicalElement;
 public class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailViewHolder> implements Filterable {
     private List<LogicalElement> originalData;
     private List<LogicalElement> filteredData;
-    private ArrayList<String> selectedCategories;
+    private Set<String> selectedCategories;
 
     public ThumbnailsAdapter(List<LogicalElement> list) {
         this.originalData = list;
         this.filteredData = this.originalData;
-        this.selectedCategories = new ArrayList<>();
+        this.selectedCategories = new HashSet<>();
     }
 
     @Override
@@ -64,16 +66,16 @@ public class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailViewHolder>
 
                    Predicate<LogicalElement> predicate = null;
 
-                   if (constraint == null || constraint.length() == 0) {
+                   if (constraint == null || constraint.length() == 0) { // No search query
                        predicate = logicalElement -> selectedCategories.contains(logicalElement.getCategory().name());
-                   } else if (selectedCategories == null || selectedCategories.isEmpty()) {
+                   } else if (selectedCategories == null || selectedCategories.isEmpty()) { // No category selected
                        predicate = logicalElement -> logicalElement.getName().toLowerCase().contains(constraint.toString().toLowerCase());
-                   } else {
+                   } else { // Everything
                        predicate = logicalElement -> selectedCategories.contains(logicalElement.getCategory().name())
                                && logicalElement.getName().toLowerCase().contains(constraint.toString().toLowerCase());
                    }
 
-                   for (LogicalElement data : originalData) {
+                   for (LogicalElement data : originalData) { // filter on original data
                        if (predicate.test(data)) {
                            filterResultsData.add(data);
                        }
@@ -94,11 +96,11 @@ public class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailViewHolder>
        };
     }
 
-    public void setSelectedCategories(ArrayList<String> selectedCategories) {
+    public void setSelectedCategories(Set<String> selectedCategories) {
         this.selectedCategories = selectedCategories;
     }
 
-    public ArrayList<String> getSelectedCategories() {
+    public Set<String> getSelectedCategories() {
         return this.selectedCategories;
     }
 }

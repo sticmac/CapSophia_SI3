@@ -1,6 +1,5 @@
 package fr.unice.polytech.si3.ihm.capsophia.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -15,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,18 +41,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         try {
-            String fragment = getIntent().getStringExtra("categories");
-            if (fragment != null) {
-                switch (fragment) {
-                    case "events":
-                        changeFragment(R.id.nav_events);
-                        break;
-                    default:
-                        changeFragment(R.id.nav_shops);
-                        break;
-                }
+            if (getFragmentManager().getBackStackEntryCount() > 0) {
+                getFragmentManager().popBackStack();
             } else {
                 changeFragment(R.id.nav_shops);
             }
@@ -70,6 +59,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -77,6 +67,8 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
@@ -109,6 +101,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         try {
+
             changeFragment(item.getItemId());
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
@@ -121,9 +114,23 @@ public class MainActivity extends AppCompatActivity
 
     private void changeFragment(int i) throws InstantiationException, IllegalAccessException {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().addToBackStack(null);
         Fragment fragment = fragments.get(i).newInstance();
-        fragmentTransaction.replace(R.id.container, fragment);
+        String tag = "";
+        switch (i) {
+            case R.id.nav_shops:
+                tag="shop";
+                break;
+            case R.id.nav_events:
+                tag="event";
+                break;
+        }
+        if (tag.isEmpty()) {
+            fragmentTransaction.replace(R.id.container, fragment);
+        } else {
+            fragmentTransaction.replace(R.id.container, fragment, tag);
+        }
         fragmentTransaction.commit();
     }
+
 }
