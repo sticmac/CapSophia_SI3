@@ -2,9 +2,7 @@ package fr.unice.polytech.si3.ihm.capsophia.fragment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,8 +24,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
@@ -37,8 +35,10 @@ public class MapFragment extends Fragment implements GoogleApiClient.ConnectionC
 
     private SupportMapFragment mSupportMapFragment;
     private GoogleApiClient mGoogleApiClient;
+    private GoogleMap gMap;
     private LocationRequest mLocationRequest;
     private LatLng capSophia;
+    private LatLng myLocation;
 
     private static final int MY_PERMISSION_REQUEST_FINE_LOCATION = 1;
 
@@ -85,7 +85,7 @@ public class MapFragment extends Fragment implements GoogleApiClient.ConnectionC
                 capSophia = new LatLng(43.616713, 7.063742);
                 googleMap.addMarker(new MarkerOptions().position(capSophia).title("Cap Sophia"));
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(capSophia, 13));
-
+                gMap = googleMap;
             }
         });
 
@@ -134,10 +134,15 @@ public class MapFragment extends Fragment implements GoogleApiClient.ConnectionC
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (lastLocation != null) {
-            LatLng latLng = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+            myLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
             ComputeRouteDistanceAndTime computeRouteDistanceAndTime = new ComputeRouteDistanceAndTime(
                     (TextView) getView().findViewById(R.id.travel_distance), (TextView) getView().findViewById(R.id.travel_time));
-            computeRouteDistanceAndTime.execute(latLng, capSophia);
+            computeRouteDistanceAndTime.execute(myLocation, capSophia);
+            LatLngBounds.Builder builder = LatLngBounds.builder();
+            builder.include(capSophia);
+            builder.include(myLocation);
+            LatLngBounds bounds = builder.build();
+            gMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 200));
         }
     }
 
