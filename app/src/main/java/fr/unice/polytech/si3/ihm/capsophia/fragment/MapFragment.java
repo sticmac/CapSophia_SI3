@@ -26,6 +26,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -73,16 +74,17 @@ public class MapFragment extends Fragment implements GoogleApiClient.ConnectionC
         mSupportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
-                // Add a marker in Sydney and move the camera
                 try {
                     googleMap.setTrafficEnabled(true);
+                    googleMap.setMyLocationEnabled(true);
+                    googleMap.getUiSettings().setMyLocationButtonEnabled(false);
                 } catch (SecurityException e) {
                     System.err.println(e);
                     e.printStackTrace();
                 }
                 capSophia = new LatLng(43.616713, 7.063742);
                 googleMap.addMarker(new MarkerOptions().position(capSophia).title("Cap Sophia"));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(capSophia, 10));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(capSophia, 13));
 
             }
         });
