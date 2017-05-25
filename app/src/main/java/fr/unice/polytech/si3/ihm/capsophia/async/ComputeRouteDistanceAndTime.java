@@ -34,8 +34,9 @@ public class ComputeRouteDistanceAndTime extends AsyncTask<LatLng, Void, Pair<St
             final String str = "http://maps.googleapis.com/maps/api/directions/json?"
                             + "origin=" + start.latitude + "," + start.longitude
                             + "&destination=" + end.latitude + "," + end.longitude
-                            + "&sensor=false&units=metric&mode=" + "walking"
+                            + "&sensor=false&units=metric&mode=" + "car"
                             + "&alternatives=true";
+
             try {
                 URL url = new URL(str);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -58,9 +59,13 @@ public class ComputeRouteDistanceAndTime extends AsyncTask<LatLng, Void, Pair<St
 
                 //Time
                 JSONObject timeObj = legArray.getJSONObject(0).getJSONObject("duration");
-                String duration = timeObj.getString("text");
+                //String duration = timeObj.getString("text");
+                int duration = timeObj.getInt("value");
+                int hours = duration/3600;
+                int minutes = (duration - hours*3600)/60;
+                String durationString = hours+":"+minutes;
 
-                res = Pair.create(distance, duration);
+                res = Pair.create(distance, durationString);
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
