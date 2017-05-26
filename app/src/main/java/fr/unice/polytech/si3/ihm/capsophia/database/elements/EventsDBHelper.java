@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.ihm.capsophia.database;
+package fr.unice.polytech.si3.ihm.capsophia.database.elements;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -11,8 +11,7 @@ import fr.unice.polytech.si3.ihm.capsophia.model.event.EventCategory;
 import fr.unice.polytech.si3.ihm.capsophia.model.media.Image;
 import fr.unice.polytech.si3.ihm.capsophia.model.media.Video;
 
-public class EventsDBHelper extends DBHelper {
-
+public class EventsDBHelper extends ElementsDBHelper {
     public EventsDBHelper(Context context) {
         super(context);
     }
@@ -29,7 +28,7 @@ public class EventsDBHelper extends DBHelper {
         return events;
     }
 
-    public static Event getEventFromCursor(Cursor cursor) {
+    private static Event getEventFromCursor(Cursor cursor) {
         Event event = new Event(
                 cursor.getString(0),
                 cursor.getString(2),

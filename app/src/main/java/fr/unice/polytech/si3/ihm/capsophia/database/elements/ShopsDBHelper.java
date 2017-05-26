@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.ihm.capsophia.database;
+package fr.unice.polytech.si3.ihm.capsophia.database.elements;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -11,7 +11,7 @@ import fr.unice.polytech.si3.ihm.capsophia.model.shop.Shop;
 import fr.unice.polytech.si3.ihm.capsophia.model.media.Image;
 import fr.unice.polytech.si3.ihm.capsophia.model.media.Video;
 
-public class ShopsDBHelper extends DBHelper {
+public class ShopsDBHelper extends ElementsDBHelper {
 
     public ShopsDBHelper(Context context) {
         super(context);
@@ -29,7 +29,7 @@ public class ShopsDBHelper extends DBHelper {
         return shops;
     }
 
-    public static Shop getShopFromCursor(Cursor cursor) {
+    private static Shop getShopFromCursor(Cursor cursor) {
         String string = cursor.getString(1);
         Shop shop = new Shop(
                 cursor.getString(0),

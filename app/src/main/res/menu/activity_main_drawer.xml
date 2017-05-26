@@ -14,6 +14,11 @@
             android:id="@+id/nav_traffic"
             android:icon="@drawable/ic_menu_traffic"
             android:title="@string/traffic" />
+
+        <item
+            android:id="@+id/nav_parking"
+            android:icon="@drawable/ic_menu_parking"
+            android:title="@string/parking" />
     </group>
 
     <!--<item android:title="Communicate">

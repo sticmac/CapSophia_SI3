@@ -13,19 +13,19 @@ import java.io.OutputStream;
 import java.sql.SQLException;
 
 public abstract class DBHelper extends SQLiteOpenHelper {
-    private static String DB_NAME = "elements_database";
-
-    SQLiteDatabase myDataBase;
+    protected SQLiteDatabase myDataBase;
     final Context myContext;
+    private String dbName;
 
-    public DBHelper(Context context) {
-        super(context, DB_NAME, null, 1);
+    public DBHelper(Context context, String dbName) {
+        super(context, dbName, null, 1);
         this.myContext = context;
+        this.dbName = dbName;
     }
 
     public void openDataBase() throws SQLException, IOException {
         //Open the database
-        String myPath = myContext.getDatabasePath(DB_NAME).getAbsolutePath();
+        String myPath = myContext.getDatabasePath(dbName).getAbsolutePath();
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
     }
 
@@ -47,7 +47,7 @@ public abstract class DBHelper extends SQLiteOpenHelper {
     private boolean checkDataBase(){
         SQLiteDatabase checkDB = null;
         try{
-            String myPath = myContext.getDatabasePath(DB_NAME).getAbsolutePath();
+            String myPath = myContext.getDatabasePath(dbName).getAbsolutePath();
             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
         } catch(SQLiteException e){
             //database doesn't exist yet.
@@ -59,8 +59,8 @@ public abstract class DBHelper extends SQLiteOpenHelper {
     }
 
     private void copyDataBase() throws IOException{
-        InputStream myInput = myContext.getAssets().open(DB_NAME);
-        String outFileName = myContext.getDatabasePath(DB_NAME).getAbsolutePath();
+        InputStream myInput = myContext.getAssets().open(dbName);
+        String outFileName = myContext.getDatabasePath(dbName).getAbsolutePath();
         OutputStream myOutput = new FileOutputStream(outFileName);
         byte[] buffer = new byte[1024];
         int length;

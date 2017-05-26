@@ -22,7 +22,7 @@ import java.util.Set;
 
 import fr.unice.polytech.si3.ihm.capsophia.R;
 import fr.unice.polytech.si3.ihm.capsophia.adapter.ThumbnailsAdapter;
-import fr.unice.polytech.si3.ihm.capsophia.database.EventsDBHelper;
+import fr.unice.polytech.si3.ihm.capsophia.database.elements.EventsDBHelper;
 import fr.unice.polytech.si3.ihm.capsophia.model.LogicalElement;
 
 public class EventsFragment extends Fragment {
