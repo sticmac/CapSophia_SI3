@@ -8,6 +8,10 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="information">Informations</string>
+
+    <string name="crowd">Affluence</string>
+
     <string name="traffic">Traffic routier</string>
     <string name="shops">Magasins</string>
     <string name="events">Événements</string>
