@@ -20,7 +20,5 @@
 
     <string name="research">Recherche</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="access_difficulty_descr">Temps d\'accès</string>
 </resources>

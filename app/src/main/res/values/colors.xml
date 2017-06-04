@@ -7,6 +7,6 @@
 
     <color name="impossible_access">#111111</color>
     <color name="hard_access">#E51E10</color>
-    <color name="medium_access">#FFF64C</color>
-    <color name="easy_access">#8BD2F4</color>
+    <color name="medium_access">#FAE752</color>
+    <color name="easy_access">#96FF4C</color>
 </resources>
