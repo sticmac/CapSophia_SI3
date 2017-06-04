@@ -3,5 +3,10 @@
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="cardViewBlue">#CC4C9BFF</color>
+    <color name="cardViewBlue">#cc4c9bff</color>
+
+    <color name="impossible_access">#111111</color>
+    <color name="hard_access">#E51E10</color>
+    <color name="medium_access">#FFF64C</color>
+    <color name="easy_access">#8BD2F4</color>
 </resources>

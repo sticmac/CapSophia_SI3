@@ -25,6 +25,11 @@
                 android:id="@+id/nav_traffic"
                 android:icon="@drawable/ic_menu_traffic"
                 android:title="@string/traffic" />
+
+            <item
+                android:id="@+id/nav_parking_access"
+                android:icon="@drawable/ic_menu_access"
+                android:title="@string/parking_access" />
         </menu>
     </item>
 

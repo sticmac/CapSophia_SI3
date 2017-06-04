@@ -20,6 +20,7 @@ import java.util.Map;
 import fr.unice.polytech.si3.ihm.capsophia.R;
 import fr.unice.polytech.si3.ihm.capsophia.fragment.EventsFragment;
 import fr.unice.polytech.si3.ihm.capsophia.fragment.MapFragment;
+import fr.unice.polytech.si3.ihm.capsophia.fragment.ParkingAccessFragment;
 import fr.unice.polytech.si3.ihm.capsophia.fragment.ParkingFragment;
 import fr.unice.polytech.si3.ihm.capsophia.fragment.ShopsFragment;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity
         fragments.put(R.id.nav_shops, ShopsFragment.class);
         fragments.put(R.id.nav_events, EventsFragment.class);
         fragments.put(R.id.nav_parking, ParkingFragment.class);
+        fragments.put(R.id.nav_parking_access, ParkingAccessFragment.class);
     }
 
     @Override

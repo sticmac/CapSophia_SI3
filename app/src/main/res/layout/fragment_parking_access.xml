@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.ParkingAccessFragment">
+
+    <Spinner
+        android:id="@+id/days_spinner"
+        style="@android:style/Widget.Material.Light.Spinner.Underlined"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:spinnerMode="dropdown" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/days_spinner"
+        android:columnCount="3"
+        android:elevation="1dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/morning"
+            android:textSize="40sp" />
+
+        <Space
+            android:layout_width="70dp"
+            android:layout_height="48dp" />
+
+        <ImageView
+            android:id="@+id/access_morning"
+            android:layout_width="120dp"
+            android:layout_height="48sp"
+            app:srcCompat="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/noon"
+            android:textSize="40sp" />
+
+        <Space
+            android:layout_width="70dp"
+            android:layout_height="48dp" />
+
+        <ImageView
+            android:id="@+id/access_noon"
+            android:layout_width="120dp"
+            android:layout_height="48sp"
+            app:srcCompat="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/afternoon"
+            android:textSize="40sp" />
+
+        <Space
+            android:layout_width="70dp"
+            android:layout_height="48dp" />
+
+        <ImageView
+            android:id="@+id/access_afternoon"
+            android:layout_width="120dp"
+            android:layout_height="48sp"
+            app:srcCompat="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/evening"
+            android:textSize="40sp" />
+
+        <Space
+            android:layout_width="70dp"
+            android:layout_height="48dp" />
+
+        <ImageView
+            android:id="@+id/access_evening"
+            android:layout_width="120dp"
+            android:layout_height="48sp"
+            app:srcCompat="@color/colorPrimary" />
+    </GridLayout>
+
+</RelativeLayout>
